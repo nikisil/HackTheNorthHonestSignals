@@ -16,8 +16,8 @@ var mediaRecorder;
 var recordedBlobs;
 var sourceBuffer;
 
-var gumVideo = document.querySelector('video#gum');
-var recordedVideo = document.querySelector('video#recorded');
+var gumVideo = document.querySelector('audio#gum');
+var recordedVideo = document.querySelector('audio#recorded');
 
 var recordButton = document.querySelector('button#record');
 //var playButton = document.querySelector('button#play');
@@ -37,7 +37,7 @@ if (!isSecureOrigin) {
 
 var constraints = {
   audio: true,
-  video: true
+  video: false
 };
 
 function handleSuccess(stream) {
@@ -60,7 +60,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 
 function handleSourceOpen(event) {
   console.log('MediaSource opened');
-  sourceBuffer = mediaSource.addSourceBuffer('audio/webm; codecs="vp8"');
+  sourceBuffer = mediaSource.addSourceBuffer('audio/wav; codecs="vp8"');
   console.log('Source buffer: ', sourceBuffer);
 }
 
@@ -93,13 +93,13 @@ function toggleRecording() {
 
 function startRecording() {
   recordedBlobs = [];
-  var options = {mimeType: 'video/webm;codecs=vp9'};
+  var options = {mimeType: 'audio/wav;codecs=vp9'};
   if (!MediaRecorder.isTypeSupported(options.mimeType)) {
     console.log(options.mimeType + ' is not Supported');
-    options = {mimeType: 'video/webm;codecs=vp8'};
+    options = {mimeType: 'audio/wav;codecs=vp8'};
     if (!MediaRecorder.isTypeSupported(options.mimeType)) {
       console.log(options.mimeType + ' is not Supported');
-      options = {mimeType: 'video/webm'};
+      options = {mimeType: 'audio/wav'};
       if (!MediaRecorder.isTypeSupported(options.mimeType)) {
         console.log(options.mimeType + ' is not Supported');
         options = {mimeType: ''};
@@ -131,12 +131,12 @@ function stopRecording() {
 }
 
 /*function play() {
-  var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+  var superBuffer = new Blob(recordedBlobs, {type: 'audio/wav'});
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
 }*/
 
 function download() {
-  var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+  var blob = new Blob(recordedBlobs, {type: 'audio/wav'});
   var url = window.URL.createObjectURL(blob);
   var a = document.createElement('a');
   a.style.display = 'none';
