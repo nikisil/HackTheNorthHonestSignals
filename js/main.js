@@ -16,8 +16,8 @@ var mediaRecorder;
 var recordedBlobs;
 var sourceBuffer;
 
-var gumVideo = document.querySelector('audio#gum');
-var recordedVideo = document.querySelector('audio#recorded');
+var gumVideo = document.querySelector('video#gum');
+var recordedVideo = document.querySelector('video#recorded');
 
 var recordButton = document.querySelector('button#record');
 //var playButton = document.querySelector('button#play');
@@ -60,7 +60,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 
 function handleSourceOpen(event) {
   console.log('MediaSource opened');
-  sourceBuffer = mediaSource.addSourceBuffer('audio/wav; codecs="vp8"');
+  sourceBuffer = mediaSource.addSourceBuffer('audio/wav; codecs="acm"');
   console.log('Source buffer: ', sourceBuffer);
 }
 
@@ -93,10 +93,10 @@ function toggleRecording() {
 
 function startRecording() {
   recordedBlobs = [];
-  var options = {mimeType: 'audio/wav;codecs=vp9'};
+  var options = {mimeType: 'audio/wav;codecs=acm'};
   if (!MediaRecorder.isTypeSupported(options.mimeType)) {
     console.log(options.mimeType + ' is not Supported');
-    options = {mimeType: 'audio/wav;codecs=vp8'};
+    options = {mimeType: 'audio/wav;codecs=acm'};
     if (!MediaRecorder.isTypeSupported(options.mimeType)) {
       console.log(options.mimeType + ' is not Supported');
       options = {mimeType: 'audio/wav'};
