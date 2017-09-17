@@ -182,4 +182,4 @@ def wav_analysis(ourfile):
 
     score_dict["Rhythmicity"] = (score_dict["Rhythmicity"]/(len(up_down_pairs)))*100
 
-    print(score_dict)
+    return score_dict
