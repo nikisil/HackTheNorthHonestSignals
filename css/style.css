@@ -47,7 +47,9 @@ color:#374054;
 	color: #fff;
     background-color: #f0ad4e;
     border-color: #eea236;
-}
+        cursor:pointer;
+        margin-right: 50px;
+    }
 #subpane{
 	text-align: center;
 }
@@ -68,3 +70,36 @@ color:#374054;
   margin-right: auto;
   display: block;
 }
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.inputfile + label {
+  
+    font-weight: 600;
+    color:#ffffff ;
+    background-color: #f0ad4e;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: transparent;
+}
+.inputfile + label {
+  cursor: pointer;
+}
+
+
+}
+.inputfile {
+  
+    font-weight: 600;
+    color:#ffffff ;
+    background-color: #f0ad4e;
+    display: inline-block;
+    }
